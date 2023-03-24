@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="colorjoe/colorjoe.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="colorjoe/colorjoe.min.js"></script>
     <title>AR Playground</title>
 
     <!-- 💁 Include both scripts below to support all browsers! -->
     <!-- Loads <model-viewer> for modern browsers: -->
-    <script type="module"
-        src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js">
-    </script>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"
+    ></script>
 
     <!-- Loads <model-viewer> for old browsers like IE11: -->
-    <script nomodule
-        src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
-    </script>
+    <script
+      nomodule
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"
+    ></script>
+    <!--     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script> -->
 
     <!-- The following libraries and polyfills are recommended to maximize browser support -->
     <!-- NOTE: you must adjust the paths as appropriate for your project -->
-        
+
     <!-- 🚨 REQUIRED: Web Components polyfill to support Edge and Firefox < 63 -->
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
 
@@ -35,23 +39,58 @@
 
     <!-- 💁 OPTIONAL: Include prismatic.js for Magic Leap support -->
     <!-- <script src="https://unpkg.com/@magicleap/prismatic@0.18.2/prismatic.min.js"></script> -->
+    <!--     <script src="https://unpkg.com/three@0.126.0/build/three.js"></script> -->
   </head>
+
   <body id="box">
-      <model-viewer 
-        id="model" 
-        src="./resources/Astronaut.glb" 
-        ar
-        ar-modes="webxr scene-viewer"
-        auto-rotate 
-        camera-controls
-        shadow-intensity=".2"
-        alt="A 3D model of an Astronaut">
-      </model-viewer>
-      <div id="color-box">
-        <input type="color" id="color-picker" name="color-picker"
-           value="#e66465">
-        <label for="color-picker"></label>
+    <model-viewer
+      id="model"
+      src="https://cdn.glitch.global/9032c8ed-e1d0-420b-84f2-82a1edfc4f8b/DamagedHelmet.glb"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      ar-placement="wall" 
+      auto-rotate
+      camera-controls 
+      disable-pan
+      shadow-intensity=".2"
+      alt="3D Model"
+    >
+      <button
+        slot="ar-button"
+        style="border: none; background: none; width: 0px; height: 0px"
+      >
+        <img
+          src="https://cdn.glitch.global/9032c8ed-e1d0-420b-84f2-82a1edfc4f8b/arlogo.png"
+          ios-src="https://cdn.glitch.global/9032c8ed-e1d0-420b-84f2-82a1edfc4f8b/arlogo.png"
+          alt="Submit"
+          style="
+            border-radius: 4px;
+            border: none;
+            width: 15%;
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+          "
+        />
+      </button>
+      <div class="container">
+        <div class="colorjoe"></div>
+        <div class="config">
+            <div class="config-title">Selected Color</div>
+            <div class="slider-text selected-color-text"></div>
+            <div class="slider selected-color"></div>
+            <div class="slider-text metalness-text">Metalness</div>
+            <div class="slider selected-metalness">
+                <input type="range" min="0" max="1" value="0" step="0.01" class="material-slider" id="metalness-range">
+            </div>
+            <div class="slider-text roughness-text">Roughness</div>
+            <div class="slider selected-roughness">
+                <input type="range" min="0" max="1" value="0" step="0.01" class="material-slider" id="roughness-range">
+            </div>
+        </div>
       </div>
-      <script src="./index.js"></script>
-</body>
+    
+    </model-viewer>
+    <script src="index.js"></script>
+  </body>
 </html>
