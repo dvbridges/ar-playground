@@ -36,39 +36,16 @@ class ColorPicker {
 const cp = new ColorPicker(document.querySelector(".container"));
 
 
-// if (location.protocol != "https:") {
-//   location.href =
-//     "https:" +
-//     window.location.href.substring(window.location.protocol.length);
-// }
+if (location.protocol != "https:") {
+  location.href =
+    "https:" +
+    window.location.href.substring(window.location.protocol.length);
+}
   
 const modelViewerParameters = document.querySelector("model-viewer#model");
 modelViewerParameters.addEventListener("load", (ev) => {
 
   let material = modelViewerParameters.model.materials[0];
-  const [materialCol] = modelViewerParameters.model.materials;
-  
-  let colorDisplay = document.querySelector(".selected-color-text").textContent;
-  // let metalnessDisplay = document.querySelector("#metalness-value");
-  // let roughnessDisplay = document.querySelector("#roughness-value");
-
-  // metalnessDisplay.textContent = material.pbrMetallicRoughness.metallicFactor;
-  // roughnessDisplay.textContent = material.pbrMetallicRoughness.roughnessFactor;
-  // Defaults to red
-  material.pbrMetallicRoughness.setBaseColorFactor(colorDisplay);
-  
-  document.querySelector('.pointer').addEventListener('change', (event) => {
-    
-    // let hexVal = "#" + parseInt(event.target.value).toString(16)
-    // let hslVal = `hsl(${event.target.value}, 75%, 50%)` 
-    // if (event.target.value == 180) {
-    //   materialCol.pbrMetallicRoughness.setBaseColorFactor(baseColor);
-    //   colorDisplay.textContent = ""
-    //   return
-    // }
-    let hexVal = document.getElementsByClassName('selected-color-text')[0].textContent;
-    materialCol.pbrMetallicRoughness.setBaseColorFactor(hexVal);
-  });
   
   document.querySelector('#metalness-range').addEventListener('input', (event) => {
     material.pbrMetallicRoughness.setMetallicFactor(event.target.value);
