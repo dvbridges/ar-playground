@@ -49,12 +49,33 @@ modelViewerParameters.addEventListener("load", (ev) => {
   
   document.querySelector('#metalness-range').addEventListener('input', (event) => {
     material.pbrMetallicRoughness.setMetallicFactor(event.target.value);
-    metalnessDisplay.textContent = event.target.value;
   });
 
   document.querySelector('#roughness-range').addEventListener('input', (event) => {
     material.pbrMetallicRoughness.setRoughnessFactor(event.target.value);
-    roughnessDisplay.textContent = event.target.value;
   });
 });
-  
+
+var buttonOn = false
+
+let roundButton = document.querySelector("#roundButton");
+roundButton.addEventListener("click", showMenu, true);
+
+let colorPalette = document.querySelector(".container");
+
+function showMenu(e) {
+    if (buttonOn == true) {
+      hideMenu(e)
+      buttonOn = false;
+      return
+    }
+    colorPalette.classList.add("show");
+    document.body.style.overflow = "hidden";
+    buttonOn = true
+}
+
+function hideMenu(e) {
+    colorPalette.classList.remove("show");
+	  e.stopPropagation();
+    document.body.style.overflow = "auto";
+}		
